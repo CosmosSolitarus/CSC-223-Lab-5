@@ -8,6 +8,7 @@ package input.components;
 
 import input.components.point.PointNodeDatabase;
 import input.components.segment.SegmentNodeDatabase;
+import input.visitor.ComponentNodeVisitor;
 
 /**
  * A basic figure consists of points, segments, and an optional description
@@ -36,6 +37,11 @@ public class FigureNode implements ComponentNode
 		_description = description;
 		_points = points;
 		_segments = segments;
+	}
+
+	@Override
+	public Object accept(ComponentNodeVisitor visitor, Object o) {
+		return visitor.visitFigureNode(this, o);
 	}
 
 	/**

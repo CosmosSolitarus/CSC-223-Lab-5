@@ -10,6 +10,7 @@ package input.components.point;
 import java.util.*;
 
 import input.components.ComponentNode;
+import input.visitor.ComponentNodeVisitor;
 
 public class PointNodeDatabase implements ComponentNode{
 	protected Set<PointNode> _points;
@@ -123,6 +124,11 @@ public class PointNodeDatabase implements ComponentNode{
 		return getPoint(new PointNode(x, y));
 	}
 	
+	@Override
+	public Object accept(ComponentNodeVisitor visitor, Object o) {
+		return visitor.visitPointNodeDatabase(this, o);
+	}
+
 	/**
 	 * toString method for testing
 	 */

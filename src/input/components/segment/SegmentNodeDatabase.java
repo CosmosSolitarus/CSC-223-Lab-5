@@ -11,8 +11,9 @@ import java.util.*;
 
 import input.components.ComponentNode;
 import input.components.point.PointNode;
+import input.visitor.ComponentNodeVisitor;
 
-public class SegmentNodeDatabase implements ComponentNode{
+public class SegmentNodeDatabase implements ComponentNode {
 	protected Map<PointNode, Set<PointNode>> _adjLists;
 	
 	/**
@@ -112,6 +113,11 @@ public class SegmentNodeDatabase implements ComponentNode{
 		return snList;
 	}
 	
+	@Override
+	public Object accept(ComponentNodeVisitor visitor, Object o) {
+		return visitor.visitSegmentDatabaseNode(this, o);
+	}
+
 	/**
 	 * Basic toString method for testing. Unparse() should be used
 	 * to manually verify parsing/unparsing is succesfull.

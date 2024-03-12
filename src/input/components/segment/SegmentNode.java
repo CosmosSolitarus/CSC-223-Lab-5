@@ -8,12 +8,14 @@
 
 package input.components.segment;
 
+import input.components.ComponentNode;
 import input.components.point.PointNode;
+import input.visitor.ComponentNodeVisitor;
 
 /**
  * A utility class only for representing ONE segment
  */
-public class SegmentNode
+public class SegmentNode implements ComponentNode
 {
 	protected PointNode _point1;
 	protected PointNode _point2;
@@ -55,6 +57,11 @@ public class SegmentNode
 		return false;
 	}
 	
+	@Override
+	public Object accept(ComponentNodeVisitor visitor, Object o) {
+		return visitor.visitSegmentNode(this, o);
+	}
+
 	/**
 	 * toString method for testing (and gets called by other classes)
 	 */

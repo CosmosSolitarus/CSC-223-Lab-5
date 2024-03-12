@@ -9,6 +9,7 @@
 package input.components.point;
 
 import input.components.ComponentNode;
+import input.visitor.ComponentNodeVisitor;
 import utilities.math.MathUtilities;
 
 /**
@@ -80,6 +81,11 @@ public class PointNode implements ComponentNode
 		PointNode that = (PointNode) obj;
 
 		return MathUtilities.doubleEquals(_x, that.getX()) && MathUtilities.doubleEquals(_y, that.getY());
+	}
+
+	@Override
+	public Object accept(ComponentNodeVisitor visitor, Object o) {
+		return visitor.visitPointNode(this, o);
 	}
 
     @Override

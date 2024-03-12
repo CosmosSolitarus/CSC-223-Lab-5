@@ -59,7 +59,7 @@ public class JSONParser
 			PointNodeDatabase pointsDatabase = getPointNodeDatabase(jsonFigure);
 			SegmentNodeDatabase segmentsDatabase = getSegmentNodeDatabase(jsonFigure, pointsDatabase);
 
-			return new FigureNode(description, pointsDatabase, segmentsDatabase);
+			return new FigureNode(description, pointsDatabase, segmentsDatabase); // replace with call to builder
 		}
 		catch (JSONException e) { error(""); }
 		
@@ -84,7 +84,7 @@ public class JSONParser
 	private PointNodeDatabase getPointNodeDatabase(JSONObject figure) 
 	{
 		JSONArray jsonPoints = (JSONArray) figure.getJSONArray("Points");
-		PointNodeDatabase pointsDatabase = new PointNodeDatabase();
+		PointNodeDatabase pointsDatabase = new PointNodeDatabase(); // call to builder
 		
 		Iterator<Object> iterPoints = jsonPoints.iterator();
 		int index = 0;
@@ -96,7 +96,7 @@ public class JSONParser
 			double x = currPoint.getDouble("x");
 			double y = currPoint.getDouble("y");
 			
-			PointNode pn = new PointNode(name, x, y);
+			PointNode pn = new PointNode(name, x, y); // builder
 			pointsDatabase.put(pn);
 			
 			iterPoints.next();
@@ -114,7 +114,7 @@ public class JSONParser
 	private SegmentNodeDatabase getSegmentNodeDatabase(JSONObject figure, PointNodeDatabase pointNodeDatabase) 
 	{
 		JSONArray jsonSegments = (JSONArray) figure.getJSONArray("Segments");
-		SegmentNodeDatabase segmentDatabase = new SegmentNodeDatabase();
+		SegmentNodeDatabase segmentDatabase = new SegmentNodeDatabase(); // builder
 		
 		int index = 0;
 		Iterator<Object> iterSegments = jsonSegments.iterator();
