@@ -7,7 +7,7 @@
 
 package input.parser;
 
-import java.util.Iterator;
+import java.util.ArrayList;
 import java.util.Set;
 
 import org.json.JSONArray;
@@ -27,7 +27,7 @@ public class JSONParser {
 	private DefaultBuilder builder;
 
 	/**
-	 * Default constructor, but will return nulls
+	 * Default constructor, will not build
 	 */
 	public JSONParser() {
 		this(new DefaultBuilder());
@@ -92,25 +92,21 @@ public class JSONParser {
 	 */
 	private PointNodeDatabase getPointNodeDatabase(JSONObject figure) {
 		JSONArray jsonPoints = (JSONArray) figure.getJSONArray("Points");
-		PointNodeDatabase pointsDatabase = new PointNodeDatabase(); // call to builder
+		ArrayList<PointNode> points = new ArrayList<>();
 
-		Iterator<Object> iterPoints = jsonPoints.iterator();
-		int index = 0;
-		while (iterPoints.hasNext()) {
-			JSONObject currPoint = jsonPoints.getJSONObject(index);
+		for (int i = 0; i < jsonPoints.length(); i++) {
+			JSONObject point = jsonPoints.getJSONObject(i);
 
-			String name = currPoint.getString("name");
-			double x = currPoint.getDouble("x");
-			double y = currPoint.getDouble("y");
+			String name = point.getString("name");
+			double x = point.getDouble("x");
+			double y = point.getDouble("y");
 
-			PointNode pn = new PointNode(name, x, y); // builder
-			pointsDatabase.put(pn);
+			PointNode pn = builder.buildPointNode(name, x, y);
 
-			iterPoints.next();
-			index++;
+			points.add(pn);
 		}
 
-		return pointsDatabase;
+		return builder.buildPointDatabaseNode(points);
 	}
 
 	/**
@@ -121,12 +117,12 @@ public class JSONParser {
 	 */
 	private SegmentNodeDatabase getSegmentNodeDatabase(JSONObject figure, PointNodeDatabase pointNodeDatabase) {
 		JSONArray jsonSegments = (JSONArray) figure.getJSONArray("Segments");
-		SegmentNodeDatabase segmentDatabase = new SegmentNodeDatabase(); // builder
 
-		int index = 0;
-		Iterator<Object> iterSegments = jsonSegments.iterator();
-		while (iterSegments.hasNext()) {
-			JSONObject curr = jsonSegments.getJSONObject(index);
+		// may be null
+		SegmentNodeDatabase segmentDatabase = builder.buildSegmentNodeDatabase();
+
+		for (int i = 0; i < jsonSegments.length(); i++) {
+			JSONObject curr = jsonSegments.getJSONObject(i);
 			// the set only contains the key of curr
 			Set<String> keySet = curr.keySet();
 
@@ -135,13 +131,11 @@ public class JSONParser {
 			JSONArray adjList = curr.getJSONArray(keyName); // the values associated with the key
 
 			// for every node connected to the key
-			for (int i = 0; i < adjList.length(); i++) {
-				PointNode toPN = pointNodeDatabase.getPoint(adjList.getString(i));
-				segmentDatabase.addUndirectedEdge(fromPN, toPN);
-			}
+			for (int i2 = 0; i2 < adjList.length(); i2++) {
+				PointNode toPN = pointNodeDatabase.getPoint(adjList.getString(i2));
 
-			iterSegments.next();
-			index++;
+				builder.addSegmentToDatabase(segmentDatabase, fromPN, toPN);
+			}
 		}
 
 		return segmentDatabase;
