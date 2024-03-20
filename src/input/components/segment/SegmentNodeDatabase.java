@@ -15,74 +15,80 @@ import input.visitor.ComponentNodeVisitor;
 
 public class SegmentNodeDatabase implements ComponentNode {
 	protected Map<PointNode, Set<PointNode>> _adjLists;
-	
+
 	/**
 	 * default segment node database constructor
 	 */
 	public SegmentNodeDatabase() {
 		_adjLists = new HashMap<>();
 	}
-	
+
 	/**
 	 * Overloaded segment node database constructor
-	 * @param map	initial mapping of segment nodes
+	 * 
+	 * @param map initial mapping of segment nodes
 	 */
 	public SegmentNodeDatabase(Map<PointNode, Set<PointNode>> map) {
 		_adjLists = new HashMap<>(map);
 	}
-	
+
 	/**
 	 * Counts and returns the number of undirected edges in the
 	 * segment database. An edge is undirected if there is an
 	 * edge from point1 to point2 and point2 to point1.
-	 * @return	the number of undirected edges.
+	 * 
+	 * @return the number of undirected edges.
 	 */
 	public int numUndirectedEdges() {
 		int count = 0;
-		
+
 		for (Set<PointNode> adjList : _adjLists.values()) {
 			count += adjList.size();
 		}
-		
+
 		// adjacencies are entered twice (A -> B and B -> A)
 		// so divide by two to count total number of edges.
 		return count / 2;
 	}
-	
+
 	/**
 	 * Adds a directed edge from point1 to point2
-	 * @param point1	the starting point
-	 * @param point2	the ending pointt
+	 * 
+	 * @param point1 the starting point
+	 * @param point2 the ending pointt
 	 */
 	private void addDirectedEdge(PointNode point1, PointNode point2) {
-		if (!_adjLists.containsKey(point1) ) {
+		if (!_adjLists.containsKey(point1)) {
 			_adjLists.put(point1, new HashSet<PointNode>());
 		}
 		_adjLists.get(point1).add(point2);
 	}
-	
+
 	/**
 	 * Adds an undirected edge by adding two directed edges in opposite directions
-	 * @param point1	first point for the edges
-	 * @param point2	second point for the edges
+	 * 
+	 * @param point1 first point for the edges
+	 * @param point2 second point for the edges
 	 */
 	public void addUndirectedEdge(PointNode point1, PointNode point2) {
 		addDirectedEdge(point1, point2);
 		addDirectedEdge(point2, point1);
 	}
-	
+
 	/**
 	 * Adds a new point and its adjacencyList to database
-	 * @param point				the point
-	 * @param adjacencyList		the point's adjacency list
+	 * 
+	 * @param point         the point
+	 * @param adjacencyList the point's adjacency list
 	 */
 	public void addAdjacencyList(PointNode point, List<PointNode> adjacencyList) {
-		_adjLists.put(point, new HashSet<PointNode> (adjacencyList));
+		_adjLists.put(point, new HashSet<PointNode>(adjacencyList));
 	}
-	
+
 	/**
 	 * Returns list of segments (not unique)
-	 * @return	the list
+	 * 
+	 * @return the list
 	 */
 	public List<SegmentNode> asSegmentList() {
 		List<SegmentNode> snList = new ArrayList<SegmentNode>();
@@ -98,13 +104,14 @@ public class SegmentNodeDatabase implements ComponentNode {
 
 	/**
 	 * Returns list of unique segments in segment node database
-	 * @return	the list
+	 * 
+	 * @return the list
 	 */
-	//brycen consulted here
+	// brycen consulted here
 	public List<SegmentNode> asUniqueSegmentList() {
 		List<SegmentNode> snList = new ArrayList<SegmentNode>();
 
-		for (SegmentNode node: asSegmentList()) {
+		for (SegmentNode node : asSegmentList()) {
 			if (!snList.contains(node)) {
 				snList.add(node);
 			}
@@ -112,7 +119,7 @@ public class SegmentNodeDatabase implements ComponentNode {
 
 		return snList;
 	}
-	
+
 	@Override
 	public Object accept(ComponentNodeVisitor visitor, Object o) {
 		return visitor.visitSegmentDatabaseNode(this, o);
@@ -123,45 +130,21 @@ public class SegmentNodeDatabase implements ComponentNode {
 	 * to manually verify parsing/unparsing is succesfull.
 	 */
 	@Override
-    public String toString() {
-        StringBuilder s = new StringBuilder();
-        List<SegmentNode> snList = asSegmentList();
+	public String toString() {
+		StringBuilder s = new StringBuilder();
+		List<SegmentNode> snList = asSegmentList();
 
-        for(SegmentNode sn : snList) {
-            s.append(sn.toString());
-            s.append('\n');
-        }
-        return s.toString();
-    }
+		for (SegmentNode sn : snList) {
+			s.append(sn.toString());
+			s.append('\n');
+		}
+		return s.toString();
+	}
 
 	/**
-	 * allows the user to print out the contents of the database in a way 
-	 * reminiscent of a JSON file
-	 * @param StringBuilder sb
-	 * @param int level to signify levels of indentation
+	 * Getter for internal adjacency list
 	 */
-	@Override
-	public void unparse(StringBuilder sb, int level) {
-		for(int i = 0; i < level; i++) { sb.append("	"); }
-		sb.append("Segments : ");
-        sb.append('\n');
-        
-        for(int i = 0; i < level; i++) { sb.append("	"); }
-        sb.append("{");
-        sb.append('\n');
-        
-        for(PointNode fromPN : _adjLists.keySet()) {
-        	for(int i = 0; i < level + 1; i++) { sb.append("	"); }
-        	sb.append(fromPN.getName());
-        	sb.append(" : ");
-        	for(PointNode toPN : _adjLists.get(fromPN)) {
-        		sb.append(toPN.getName());
-        		sb.append(" ");
-        	}
-        	sb.append('\n');
-        }
-        
-        for(int i = 0; i < level; i++) { sb.append("	"); }
-        sb.append("}");
+	public Map<PointNode, Set<PointNode>> getAdjacencyMap() {
+		return _adjLists;
 	}
 }
