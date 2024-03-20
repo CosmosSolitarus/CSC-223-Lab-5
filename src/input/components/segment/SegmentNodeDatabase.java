@@ -120,6 +120,9 @@ public class SegmentNodeDatabase implements ComponentNode {
 		return snList;
 	}
 
+	/**
+	 * Allows for visitor design pattern.
+	 */
 	@Override
 	public Object accept(ComponentNodeVisitor visitor, Object o) {
 		return visitor.visitSegmentDatabaseNode(this, o);

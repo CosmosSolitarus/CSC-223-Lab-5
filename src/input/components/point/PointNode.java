@@ -87,6 +87,9 @@ public class PointNode implements ComponentNode {
 		return MathUtilities.doubleEquals(_x, that.getX()) && MathUtilities.doubleEquals(_y, that.getY());
 	}
 
+	/**
+	 * Allows for visitor design pattern.
+	 */
 	@Override
 	public Object accept(ComponentNodeVisitor visitor, Object o) {
 		return visitor.visitPointNode(this, o);

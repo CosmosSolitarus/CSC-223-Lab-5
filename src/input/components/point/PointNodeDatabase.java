@@ -133,6 +133,9 @@ public class PointNodeDatabase implements ComponentNode {
 		return getPoint(new PointNode(x, y));
 	}
 
+	/**
+	 * Allows for visitor design pattern.
+	 */
 	@Override
 	public Object accept(ComponentNodeVisitor visitor, Object o) {
 		return visitor.visitPointNodeDatabase(this, o);

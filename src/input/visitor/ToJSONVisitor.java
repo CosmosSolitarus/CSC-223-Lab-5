@@ -15,6 +15,9 @@ import input.parser.JSON_Constants;
 
 public class ToJSONVisitor implements ComponentNodeVisitor {
 
+    /**
+     * Implementation of visitor design pattern for FigureNode
+     */
     @Override
     public JSONObject visitFigureNode(FigureNode node, Object o) {
         return new JSONObject().put(
@@ -33,12 +36,18 @@ public class ToJSONVisitor implements ComponentNodeVisitor {
                                         null)));
     }
 
+    /**
+     * Implementation of visitor design pattern for PointNode
+     */
     @Override
     public JSONObject visitPointNode(PointNode node, Object o) {
         return new JSONObject().put(JSON_Constants.JSON_NAME, node.getName()).put(JSON_Constants.JSON_X, node.getX())
                 .put(JSON_Constants.JSON_Y, node.getY());
     }
 
+    /**
+     * Implementation of visitor design pattern for PointNodeDatabase
+     */
     @Override
     public JSONArray visitPointNodeDatabase(PointNodeDatabase node, Object o) {
         JSONArray points = new JSONArray();
@@ -50,6 +59,9 @@ public class ToJSONVisitor implements ComponentNodeVisitor {
         return points;
     }
 
+    /**
+     * Implementation of visitor design pattern for SegmentNodeDatabase
+     */
     @Override
     public JSONArray visitSegmentDatabaseNode(SegmentNodeDatabase node, Object o) {
         JSONArray segmentMaps = new JSONArray();
@@ -68,6 +80,10 @@ public class ToJSONVisitor implements ComponentNodeVisitor {
         return segmentMaps;
     }
 
+    /**
+     * Implementation of visitor design pattern for SegmentNode
+     * (left  as null for now)
+     */
     @Override
     public Object visitSegmentNode(SegmentNode node, Object o) {
         return null;

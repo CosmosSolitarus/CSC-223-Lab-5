@@ -57,6 +57,9 @@ public class SegmentNode implements ComponentNode
 		return false;
 	}
 	
+	/**
+	 * Allows for visitor design pattern.
+	 */
 	@Override
 	public Object accept(ComponentNodeVisitor visitor, Object o) {
 		return visitor.visitSegmentNode(this, o);
