@@ -57,12 +57,14 @@ public class UnparseVisitor implements ComponentNodeVisitor {
 		for (int i = 0; i < level; i++) {
 			sb.append("	");
 		}
+
 		sb.append("Segments : ");
 		sb.append('\n');
 
 		for (int i = 0; i < level; i++) {
 			sb.append("	");
 		}
+
 		sb.append("{");
 		sb.append('\n');
 
@@ -70,18 +72,22 @@ public class UnparseVisitor implements ComponentNodeVisitor {
 			for (int i = 0; i < level + 1; i++) {
 				sb.append("	");
 			}
+
 			sb.append(fromPN.getName());
 			sb.append(" : ");
+
 			for (PointNode toPN : node.getAdjacencyMap().get(fromPN)) {
 				sb.append(toPN.getName());
 				sb.append(" ");
 			}
+
 			sb.append('\n');
 		}
 
 		for (int i = 0; i < level; i++) {
 			sb.append("	");
 		}
+
 		sb.append("}");
 
 		return o;
@@ -108,12 +114,14 @@ public class UnparseVisitor implements ComponentNodeVisitor {
 		for (int i = 0; i < level; i++) {
 			sb.append("	");
 		}
+
 		sb.append("Points : ");
 		sb.append('\n');
 
 		for (int i = 0; i < level; i++) {
 			sb.append("	");
 		}
+
 		sb.append("{");
 		sb.append('\n');
 
@@ -125,6 +133,7 @@ public class UnparseVisitor implements ComponentNodeVisitor {
 		for (int i = 0; i < level; i++) {
 			sb.append("	");
 		}
+
 		sb.append("}");
 
 		return o;
@@ -141,7 +150,7 @@ public class UnparseVisitor implements ComponentNodeVisitor {
 		for (int i = 0; i < level; i++) {
 			sb.append("	");
 		}
-		sb.append(toString());
+		sb.append(node.toString());
 
 		return o;
 	}
