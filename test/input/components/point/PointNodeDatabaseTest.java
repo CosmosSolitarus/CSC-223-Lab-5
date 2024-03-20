@@ -178,7 +178,6 @@ class PointNodeDatabaseTest {
 		database.put(pn);
 		PointNode pn2 = new PointNode("PN 2", 2, 2);
 		database.put(pn2);
-		System.out.println(database);
 		assertEquals(database.toString(), "PN 1(1, 1)" + '\n' + "PN 2(2, 2)" + '\n');
 	}
 }

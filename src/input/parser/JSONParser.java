@@ -64,6 +64,7 @@ public class JSONParser {
 
 			String description = getDescription(jsonFigure);
 			PointNodeDatabase pointsDatabase = getPointNodeDatabase(jsonFigure);
+
 			SegmentNodeDatabase segmentsDatabase = getSegmentNodeDatabase(jsonFigure, pointsDatabase);
 
 			return builder.buildFigureNode(description, pointsDatabase, segmentsDatabase);

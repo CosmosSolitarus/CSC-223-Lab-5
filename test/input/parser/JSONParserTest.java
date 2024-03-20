@@ -2,20 +2,24 @@ package input.parser;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.AbstractMap;
+
 import org.junit.jupiter.api.Test;
 
+import input.builder.GeometryBuilder;
 import input.components.ComponentNode;
 import input.components.FigureNode;
 import input.exception.ParseException;
+import input.visitor.UnparseVisitor;
 
 class JSONParserTest
 {
 	public static ComponentNode runFigureParseTest(String filename)
 	{
-		JSONParser parser = new JSONParser();
+		JSONParser parser = new JSONParser(new GeometryBuilder());
 
 		String figureStr = utilities.io.FileUtilities.readFileFilterComments(filename);
-		
+
 		return parser.parse(figureStr);
 	}
 	
@@ -41,7 +45,9 @@ class JSONParserTest
 		assertTrue(node instanceof FigureNode);
 		
 		StringBuilder sb = new StringBuilder();
-		node.unparse(sb, 0);
+		UnparseVisitor unparser = new UnparseVisitor();
+		unparser.visitFigureNode((FigureNode)node, new AbstractMap.SimpleEntry<StringBuilder, Integer>(sb, 0));
+		
 		System.out.println(sb.toString());
 	}
 
@@ -53,7 +59,9 @@ class JSONParserTest
 		assertTrue(node instanceof FigureNode);
 		
 		StringBuilder sb = new StringBuilder();
-		node.unparse(sb, 0);
+		UnparseVisitor unparser = new UnparseVisitor();
+		unparser.visitFigureNode((FigureNode)node, new AbstractMap.SimpleEntry<StringBuilder, Integer>(sb, 0));
+		
 		System.out.println(sb.toString());
 	}
 
@@ -65,7 +73,9 @@ class JSONParserTest
 		assertTrue(node instanceof FigureNode);
 		
 		StringBuilder sb = new StringBuilder();
-		node.unparse(sb, 0);
+		UnparseVisitor unparser = new UnparseVisitor();
+		unparser.visitFigureNode((FigureNode)node, new AbstractMap.SimpleEntry<StringBuilder, Integer>(sb, 0));
+		
 		System.out.println(sb.toString());
 	}
 
@@ -77,7 +87,9 @@ class JSONParserTest
 		assertTrue(node instanceof FigureNode);
 		
 		StringBuilder sb = new StringBuilder();
-		node.unparse(sb, 0);
+		UnparseVisitor unparser = new UnparseVisitor();
+		unparser.visitFigureNode((FigureNode)node, new AbstractMap.SimpleEntry<StringBuilder, Integer>(sb, 0));
+		
 		System.out.println(sb.toString());
 	}
 
@@ -87,9 +99,11 @@ class JSONParserTest
 		ComponentNode node = JSONParserTest.runFigureParseTest("GeometryFigureTest1.json");
 
 		assertTrue(node instanceof FigureNode);
-		
+
 		StringBuilder sb = new StringBuilder();
-		node.unparse(sb, 0);
+		UnparseVisitor unparser = new UnparseVisitor();
+		unparser.visitFigureNode((FigureNode)node, new AbstractMap.SimpleEntry<StringBuilder, Integer>(sb, 0));
+		
 		System.out.println(sb.toString());
 	}
 
@@ -101,7 +115,9 @@ class JSONParserTest
 		assertTrue(node instanceof FigureNode);
 		
 		StringBuilder sb = new StringBuilder();
-		node.unparse(sb, 0);
+		UnparseVisitor unparser = new UnparseVisitor();
+		unparser.visitFigureNode((FigureNode)node, new AbstractMap.SimpleEntry<StringBuilder, Integer>(sb, 0));
+		
 		System.out.println(sb.toString());
 	}
 
@@ -113,7 +129,9 @@ class JSONParserTest
 		assertTrue(node instanceof FigureNode);
 		
 		StringBuilder sb = new StringBuilder();
-		node.unparse(sb, 0);
+		UnparseVisitor unparser = new UnparseVisitor();
+		unparser.visitFigureNode((FigureNode)node, new AbstractMap.SimpleEntry<StringBuilder, Integer>(sb, 0));
+		
 		System.out.println(sb.toString());
 	}
 
@@ -125,7 +143,9 @@ class JSONParserTest
 		assertTrue(node instanceof FigureNode);
 		
 		StringBuilder sb = new StringBuilder();
-		node.unparse(sb, 0);
+		UnparseVisitor unparser = new UnparseVisitor();
+		unparser.visitFigureNode((FigureNode)node, new AbstractMap.SimpleEntry<StringBuilder, Integer>(sb, 0));
+		
 		System.out.println(sb.toString());
 	}
 
@@ -133,11 +153,13 @@ class JSONParserTest
 	void GeometryFigureTest5_test()
 	{
 		ComponentNode node = JSONParserTest.runFigureParseTest("GeometryFigureTest5.json");
-
+		
 		assertTrue(node instanceof FigureNode);
 		
 		StringBuilder sb = new StringBuilder();
-		node.unparse(sb, 0);
+		UnparseVisitor unparser = new UnparseVisitor();
+		unparser.visitFigureNode((FigureNode)node, new AbstractMap.SimpleEntry<StringBuilder, Integer>(sb, 0));
+		
 		System.out.println(sb.toString());
 	}
 }
