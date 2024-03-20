@@ -1,3 +1,14 @@
+//
+//                  A
+//           B             H         
+//
+//       C                     G
+//
+//           D             F
+//                  E
+//
+// All points connect to all others
+//
 { "Figure" :
     { "Description" : "Fully Interconnected 8 Point Circle (Half Implicit)",
     "Points" : [

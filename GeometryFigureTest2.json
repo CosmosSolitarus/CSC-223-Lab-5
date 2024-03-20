@@ -1,3 +1,13 @@
+//
+//  A ------ E
+//  B ------ F
+//  C ------ G
+//  D ------ H
+//
+// Left side fully connects to right side.
+// Left side does not connect to left side.
+// Right side does not connect to right side.
+//
 { "Figure" :
     { "Description" : "Couple Matching (4 per side)",
     "Points" : [

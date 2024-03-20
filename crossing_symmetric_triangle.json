@@ -1,3 +1,9 @@
+//    "Comment" : "  A                                 
+//                  / \                                
+//                 B___C                               
+//                / \ / \                              
+//               /   X   \  X is not a specified point (it is implied) 
+//              D_________E                            
 {
   "Figure" :
   {

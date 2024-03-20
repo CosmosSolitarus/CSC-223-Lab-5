@@ -1,3 +1,14 @@
+//
+//                  A
+//           B             H         
+//
+//       C          I          G
+//
+//           D             F
+//                  E
+//
+// All points connect to center and points immediately to left and right.
+//
 { "Figure" :
     { "Description" : "Fully Interconnected 8 Point Circle with Middle Point (Half Implicit)",
     "Points" : [

@@ -1,3 +1,16 @@
+//	
+//	   C
+//	             B
+//	
+//	       A     E
+//	
+//	F
+//	     D
+//
+// A <-_> B
+// C <--> D
+// E <--> F
+//	
 { "Figure" :
     { "Description" : "Non-Connected Segments",
     "Points" : [
