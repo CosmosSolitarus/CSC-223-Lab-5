@@ -77,6 +77,7 @@ public class ToJSONVisitor implements ComponentNodeVisitor {
 
             segmentMaps.put(new JSONObject().put(entry.getKey().getName(), pointList));
         }
+
         return segmentMaps;
     }
 

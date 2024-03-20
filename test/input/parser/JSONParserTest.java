@@ -49,6 +49,7 @@ class JSONParserTest
 		unparser.visitFigureNode((FigureNode)node, new AbstractMap.SimpleEntry<StringBuilder, Integer>(sb, 0));
 		
 		System.out.println(sb.toString());
+		System.out.println("\n");
 	}
 
 	@Test
@@ -63,6 +64,7 @@ class JSONParserTest
 		unparser.visitFigureNode((FigureNode)node, new AbstractMap.SimpleEntry<StringBuilder, Integer>(sb, 0));
 		
 		System.out.println(sb.toString());
+		System.out.println("\n");
 	}
 
 	@Test
@@ -77,6 +79,7 @@ class JSONParserTest
 		unparser.visitFigureNode((FigureNode)node, new AbstractMap.SimpleEntry<StringBuilder, Integer>(sb, 0));
 		
 		System.out.println(sb.toString());
+		System.out.println("\n");
 	}
 
 	@Test
@@ -91,6 +94,7 @@ class JSONParserTest
 		unparser.visitFigureNode((FigureNode)node, new AbstractMap.SimpleEntry<StringBuilder, Integer>(sb, 0));
 		
 		System.out.println(sb.toString());
+		System.out.println("\n");
 	}
 
 	@Test
@@ -105,6 +109,7 @@ class JSONParserTest
 		unparser.visitFigureNode((FigureNode)node, new AbstractMap.SimpleEntry<StringBuilder, Integer>(sb, 0));
 		
 		System.out.println(sb.toString());
+		System.out.println("\n");
 	}
 
 	@Test
@@ -119,6 +124,7 @@ class JSONParserTest
 		unparser.visitFigureNode((FigureNode)node, new AbstractMap.SimpleEntry<StringBuilder, Integer>(sb, 0));
 		
 		System.out.println(sb.toString());
+		System.out.println("\n");
 	}
 
 	@Test
@@ -133,6 +139,7 @@ class JSONParserTest
 		unparser.visitFigureNode((FigureNode)node, new AbstractMap.SimpleEntry<StringBuilder, Integer>(sb, 0));
 		
 		System.out.println(sb.toString());
+		System.out.println("\n");
 	}
 
 	@Test
@@ -147,6 +154,7 @@ class JSONParserTest
 		unparser.visitFigureNode((FigureNode)node, new AbstractMap.SimpleEntry<StringBuilder, Integer>(sb, 0));
 		
 		System.out.println(sb.toString());
+		System.out.println("\n");
 	}
 
 	@Test
@@ -161,5 +169,6 @@ class JSONParserTest
 		unparser.visitFigureNode((FigureNode)node, new AbstractMap.SimpleEntry<StringBuilder, Integer>(sb, 0));
 		
 		System.out.println(sb.toString());
+		System.out.println("\n");
 	}
 }

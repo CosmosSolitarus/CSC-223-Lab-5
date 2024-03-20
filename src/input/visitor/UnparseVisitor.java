@@ -27,7 +27,7 @@ public class UnparseVisitor implements ComponentNodeVisitor {
 		sb.append("{");
 		sb.append('\n');
 
-		sb.append("		Description : ");
+		sb.append("\tDescription : ");
 		sb.append(node.getDescription());
 		sb.append('\n');
 
